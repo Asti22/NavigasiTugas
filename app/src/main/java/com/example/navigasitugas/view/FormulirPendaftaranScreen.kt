@@ -32,5 +32,21 @@ fun FormulirPendaftaranScreen(
         stringResource(id = R.string.status_lajang),
         stringResource(id = R.string.status_duda)
     )
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(Color(0xFFF5F5F5))
+            .verticalScroll(rememberScrollState())
+    ){
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color(0xFFB39DDB))
+                .padding(vertical = dimensionResource(id = R.dimen.padding_medium)),
+            contentAlignment = Alignment.Center
+        ){
+
+        }
+    }
 
     }
