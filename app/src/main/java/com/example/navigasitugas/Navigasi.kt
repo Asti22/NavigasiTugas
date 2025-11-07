@@ -34,6 +34,11 @@ fun DataApp(
                     }
                 )
         }
+            composable(route = Navigasi.ListPeserta.name) {
+                ListPesertaScreen(
+                    onGoHomeClick = {
+
+                    }
 
 
 }
