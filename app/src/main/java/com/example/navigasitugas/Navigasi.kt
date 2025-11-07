@@ -22,6 +22,10 @@ fun DataApp(
             navController = navController,
             startDestination = Navigasi.Formulir.name,
             modifier = Modifier.padding(innerPadding)
-        )
+        ){
+            composable(route = Navigasi.Formulir.name) {
+                FormulirPendaftaranScreen(
+                    onSubmitBtnClick = {
+        }
 
 }
