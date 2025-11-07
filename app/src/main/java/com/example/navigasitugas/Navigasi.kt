@@ -37,8 +37,8 @@ fun DataApp(
             composable(route = Navigasi.ListPeserta.name) {
                 ListPesertaScreen(
                     onGoHomeClick = {
-
-                    }
+                        navController.navigate(Navigasi.SelamatDatang.name)
+                    },
 
 
 }
