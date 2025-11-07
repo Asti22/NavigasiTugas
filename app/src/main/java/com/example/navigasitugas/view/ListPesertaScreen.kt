@@ -27,59 +27,83 @@ fun ListPesertaScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Color(0xFFF3E5F5))
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .background(Color(0xFFF3E5F5)) // Latar belakang lembut
     ) {
-        Text(
-            text = stringResource(R.string.list_title),
-            fontSize = 22.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color(0xFF4A148C)
-        )
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        ElevatedCard(
-            shape = RoundedCornerShape(16.dp),
-            elevation = CardDefaults.cardElevation(8.dp),
-            modifier = Modifier.fillMaxWidth()
+        // 🔹 Header ungu di bagian atas
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color(0xFF7E57C2)) // Warna ungu
+                .padding(vertical = 24.dp),
+            contentAlignment = Alignment.Center
         ) {
+            Text(
+                text = stringResource(R.string.list_title),
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+        }
+
+        // 🔹 Konten utama
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            Spacer(modifier = Modifier.height(16.dp))
+
+            ElevatedCard(
+                shape = RoundedCornerShape(16.dp),
+                elevation = CardDefaults.cardElevation(8.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .padding(20.dp)
+                        .fillMaxSize(),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    Text("${stringResource(R.string.list_nama)} $nama", fontWeight = FontWeight.Bold)
+                    Text("${stringResource(R.string.list_jenis_kelamin)} $jenisKelamin")
+                    Text("${stringResource(R.string.list_status)} $status")
+                    Text("${stringResource(R.string.list_alamat)} $alamat")
+                }
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // 🔹 Tombol navigasi
             Column(
-                modifier = Modifier.padding(20.dp),
+                modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                Text("${stringResource(R.string.list_nama)} $nama", fontWeight = FontWeight.Bold)
-                Text("${stringResource(R.string.list_jenis_kelamin)} $jenisKelamin")
-                Text("${stringResource(R.string.list_status)} $status")
-                Text("${stringResource(R.string.list_alamat)} $alamat")
+                Button(
+                    onClick = onGoHomeClick,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF7E57C2)),
+                    shape = RoundedCornerShape(12.dp)
+                ) {
+                    Text(stringResource(R.string.go_home), fontSize = 18.sp, color = Color.White)
+                }
+
+                Button(
+                    onClick = onFormClick,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF9575CD)),
+                    shape = RoundedCornerShape(12.dp)
+                ) {
+                    Text(stringResource(R.string.back_to_form), fontSize = 18.sp, color = Color.White)
+                }
             }
-        }
-
-        Spacer(modifier = Modifier.height(32.dp))
-
-        Button(
-            onClick = onGoHomeClick,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF7E57C2)),
-            shape = RoundedCornerShape(12.dp)
-        ) {
-            Text(stringResource(R.string.go_home), fontSize = 18.sp, color = Color.White)
-        }
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        Button(
-            onClick = onFormClick,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF9575CD)),
-            shape = RoundedCornerShape(12.dp)
-        ) {
-            Text(stringResource(R.string.back_to_form), fontSize = 18.sp, color = Color.White)
         }
     }
 }

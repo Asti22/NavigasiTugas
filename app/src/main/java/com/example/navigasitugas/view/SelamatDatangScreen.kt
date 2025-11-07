@@ -24,42 +24,74 @@ fun SelamatDatangScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Color(0xFFF3E5F5))
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+            .background(Color(0xFFF3E5F5)), // warna ungu muda lembut
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = stringResource(R.string.welcome_title),
-            fontSize = 26.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color(0xFF4A148C)
-        )
 
-        Spacer(modifier = Modifier.height(32.dp))
-
-        Image(
-            painter = painterResource(id = R.drawable.logo_card_lst),
-            contentDescription = "Logo",
-            modifier = Modifier.size(150.dp)
-        )
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        Text("Asti Nurul Utami", fontSize = 20.sp, fontWeight = FontWeight.Medium)
-        Text("20230140217", fontSize = 16.sp, color = Color.Gray)
-
-        Spacer(modifier = Modifier.height(32.dp))
-
-        Button(
-            onClick = onSubmitClick,
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(50.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF7E57C2)),
-            shape = RoundedCornerShape(12.dp)
+                .background(Color(0xFF7E57C2)) // ungu tua
+                .padding(vertical = 20.dp),
+            contentAlignment = Alignment.Center
         ) {
-            Text(stringResource(R.string.submit), fontSize = 18.sp, color = Color.White)
+            Text(
+                text = stringResource(R.string.welcome_title),
+                fontSize = 22.sp,
+                color = Color.White,
+                fontWeight = FontWeight.Bold
+            )
+        }
+
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f) // isi tengah ambil sisa layar
+                .padding(horizontal = 24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Image(
+                painter = painterResource(id = R.drawable.logo_card_lst),
+                contentDescription = "Foto Profil",
+                modifier = Modifier
+                    .size(170.dp)
+                    .padding(8.dp)
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Text(
+                text = "Asti Nurul Utami",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Medium,
+                color = Color(0xFF4A148C)
+            )
+            Text(
+                text = "20230140217",
+                fontSize = 16.sp,
+                color = Color.Gray
+            )
+
+            Spacer(modifier = Modifier.height(40.dp))
+
+            Button(
+                onClick = onSubmitClick,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF7E57C2)),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Text(
+                    text = stringResource(R.string.submit),
+                    fontSize = 18.sp,
+                    color = Color.White
+                )
+            }
         }
     }
 }
