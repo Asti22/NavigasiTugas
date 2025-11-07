@@ -4,10 +4,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavType
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
 import androidx.navigation.compose.rememberNavController
 import com.example.navigasitugas.view.FormulirPendaftaranScreen
 import com.example.navigasitugas.view.ListPesertaScreen
@@ -21,39 +20,34 @@ enum class Navigasi {
 
 @Composable
 fun DataApp(
-    navController: androidx.navigation.NavHostController = rememberNavController(),
+    navController: NavHostController = rememberNavController(),
     modifier: Modifier = Modifier
 ) {
     Scaffold { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Navigasi.SelamatDatang.name,
+            startDestination = Navigasi.Formulir.name,
             modifier = Modifier.padding(innerPadding)
         ) {
-            // 🔹 Halaman Selamat Datang
-            composable(route = Navigasi.SelamatDatang.name) {
-                SelamatDatangScreen {
-                    navController.navigate(Navigasi.Formulir.name)
-                }
-            }
-
-            // 🔹 Halaman Formulir
+            // 🔹 Formulir → ke List Peserta
             composable(route = Navigasi.Formulir.name) {
-                FormulirPendaftaranScreen { nama, jenisKelamin, status, alamat ->
-                    navController.navigate(
-                        "${Navigasi.ListPeserta.name}/$nama/$jenisKelamin/$status/$alamat"
-                    )
-                }
+                FormulirPendaftaranScreen(
+                    onSubmitBtnClick = { nama, jenisKelamin, status, alamat ->
+                        navController.navigate(
+                            "${Navigasi.ListPeserta.name}/$nama/$jenisKelamin/$status/$alamat"
+                        )
+                    }
+                )
             }
 
-            // 🔹 Halaman List Peserta (dengan argumen)
+            // 🔹 List Peserta → ke Selamat Datang & ke Formulir
             composable(
                 route = "${Navigasi.ListPeserta.name}/{nama}/{jenisKelamin}/{status}/{alamat}",
                 arguments = listOf(
-                    navArgument("nama") { type = NavType.StringType },
-                    navArgument("jenisKelamin") { type = NavType.StringType },
-                    navArgument("status") { type = NavType.StringType },
-                    navArgument("alamat") { type = NavType.StringType }
+                    androidx.navigation.navArgument("nama") { defaultValue = "" },
+                    androidx.navigation.navArgument("jenisKelamin") { defaultValue = "" },
+                    androidx.navigation.navArgument("status") { defaultValue = "" },
+                    androidx.navigation.navArgument("alamat") { defaultValue = "" }
                 )
             ) { backStackEntry ->
                 val nama = backStackEntry.arguments?.getString("nama") ?: ""
@@ -71,6 +65,15 @@ fun DataApp(
                     },
                     onFormClick = {
                         navController.navigate(Navigasi.Formulir.name)
+                    }
+                )
+            }
+
+            // 🔹 Selamat Datang → ke List Peserta
+            composable(route = Navigasi.SelamatDatang.name) {
+                SelamatDatangScreen(
+                    onSubmitClick = {
+                        navController.navigate(Navigasi.ListPeserta.name + "/Pascal Pahlevi Pasha/Pria/Lajang/Sleman")
                     }
                 )
             }
