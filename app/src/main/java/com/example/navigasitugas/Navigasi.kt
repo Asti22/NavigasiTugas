@@ -39,6 +39,11 @@ fun DataApp(
                     onGoHomeClick = {
                         navController.navigate(Navigasi.SelamatDatang.name)
                     },
+                    onFormClick = {
+                        navController.navigate(Navigasi.Formulir.name)
+                    }
+                )
+            }
 
 
 }
