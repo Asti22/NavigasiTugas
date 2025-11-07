@@ -44,6 +44,9 @@ fun DataApp(
                     }
                 )
             }
+            composable(route = Navigasi.SelamatDatang.name) {
+                SelamatDatangScreen(
+                    onSubmitClick =
 
 
 }
