@@ -26,14 +26,14 @@ fun DataApp(
             navController = navController,
             startDestination = Navigasi.Formulir.name,
             modifier = Modifier.padding(innerPadding)
-        ){
+        ) {
             composable(route = Navigasi.Formulir.name) {
                 FormulirPendaftaranScreen(
                     onSubmitBtnClick = {
                         navController.navigate(Navigasi.ListPeserta.name)
                     }
                 )
-        }
+            }
             composable(route = Navigasi.ListPeserta.name) {
                 ListPesertaScreen(
                     onGoHomeClick = {
@@ -46,7 +46,13 @@ fun DataApp(
             }
             composable(route = Navigasi.SelamatDatang.name) {
                 SelamatDatangScreen(
-                    onSubmitClick =
+                    onSubmitClick = {
+                        navController.navigate(Navigasi.ListPeserta.name)
+                    }
+                )
+            }
+        }
+    }
 
 
 }
