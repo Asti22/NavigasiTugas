@@ -34,5 +34,35 @@ fun ListPesertaScreen(
         }
 
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_large)))
+        ElevatedCard(
+            shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius)),
+            elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp),
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(dimensionResource(R.dimen.padding_medium))
+                    .fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small))
+            ) {
+                Text(
+                    text = "${stringResource(R.string.label_nama)}: $nama",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = "${stringResource(R.string.label_jenis_kelamin)}: $jenisKelamin",
+                    fontSize = 18.sp
+                )
+                Text(
+                    text = "${stringResource(R.string.label_status)}: $status",
+                    fontSize = 18.sp
+                )
+                Text(
+                    text = "${stringResource(R.string.label_alamat)}: $alamat",
+                    fontSize = 18.sp
+                )
+            }
+        }
     }
 }
